@@ -35,7 +35,7 @@ function App() {
 
     try {
       const res = await axios.post(
-        'https://your-backend.onrender.com/upload', // ← Replace with your Render backend URL
+        'https://resumeextrator.onrender.com/upload', // ← Replace with your Render backend URL
         formData
       );
       setSkills(res.data.skills);
