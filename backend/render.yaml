@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: resume-extractor
+    env: python
+    buildCommand: ./build.sh && pip install -r requirements.txt
+    startCommand: gunicorn app:app --bind 0.0.0.0:5000
+    envVars:
+      - key: TESSDATA_PREFIX
+        value: /usr/share/tesseract-ocr/4.00/tessdata
