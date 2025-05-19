@@ -1,0 +1,7 @@
+Flask
+flask-cors
+PyPDF2
+docx2txt
+pdf2image
+pytesseract
+gunicorn
