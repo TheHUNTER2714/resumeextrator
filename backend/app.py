@@ -1,9 +1,9 @@
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-import PyPDF2
-import docx2txt
 import os
 import io
+from pdfminer.high_level import extract_text
+import docx2txt
 
 app = Flask(__name__)
 CORS(app)
@@ -20,11 +20,10 @@ SKILL_KEYWORDS = {
 def extract_text_from_pdf(file_stream):
     try:
         file_stream.seek(0)
-        reader = PyPDF2.PdfReader(file_stream)
-        text = " ".join(page.extract_text() or "" for page in reader.pages)
+        text = extract_text(file_stream)
         return text.strip()
     except Exception as e:
-        print("PDF error:", str(e))
+        print("PDF extraction error:", str(e))
         return ""
 
 def extract_text_from_docx(file_stream):
@@ -77,3 +76,4 @@ def home():
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
