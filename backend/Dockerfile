@@ -1,23 +1,21 @@
-# Use an official Python image
 FROM python:3.11-slim
 
-# Install system dependencies (for PDF/image processing)
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y tesseract-ocr poppler-utils && \
     rm -rf /var/lib/apt/lists/*
 
-# Set work directory
+# Set working directory to backend
 WORKDIR /app
 
-# Copy your project files into the container
-COPY . /app
+# Copy everything from the backend folder to the container
+COPY backend/ /app/
 
 # Install Python dependencies
 RUN pip install --upgrade pip && \
     pip install -r requirements.txt
 
-# Expose the port your app runs on
 EXPOSE 5000
 
-# Start your Flask app using Gunicorn
+# Run the app using Gunicorn
 CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:5000"]
