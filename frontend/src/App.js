@@ -35,7 +35,7 @@ function App() {
 
     try {
       const res = await axios.post(
-        'https://resumeextrator.onrender.com/upload', // ← Replace with your Render backend URL
+        'https://resumeextrator.onrender.com/upload', 
         formData
       );
       setSkills(res.data.skills);
@@ -229,8 +229,8 @@ function App() {
         )}
 
         {skills.length === 0 && !loading && file && started && (
-          <p className="text-sm text-red-500 mt-4">
-            No skills were found in the uploaded resume.
+          <p className="text-sm text-blue-500 mt-4">
+            please upload your simple templates for extracting skill from your resume.
           </p>
         )}
       </motion.div>
