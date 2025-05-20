@@ -4,8 +4,6 @@ import PyPDF2
 import docx2txt
 import os
 import io
-from pdf2image import convert_from_bytes
-import pytesseract
 
 app = Flask(__name__)
 CORS(app)
@@ -24,10 +22,6 @@ def extract_text_from_pdf(file_stream):
         file_stream.seek(0)
         reader = PyPDF2.PdfReader(file_stream)
         text = " ".join(page.extract_text() or "" for page in reader.pages)
-        if len(text.strip()) < 100:
-            file_stream.seek(0)
-            images = convert_from_bytes(file_stream.read())
-            text += " ".join([pytesseract.image_to_string(img) for img in images])
         return text.strip()
     except Exception as e:
         print("PDF error:", str(e))
