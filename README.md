@@ -6,7 +6,6 @@
 
 - **Frontend (React + Tailwind + Framer Motion)**: [https://rajeshth.netlify.app](https://rajeshth.netlify.app)
 - **Backend (Flask API)**: [https://resumeextrator.onrender.com](https://resumeextrator.onrender.com)
-- ![Uploading brave_screenshot_rajeshth.netlify.app.png…]()
 
 
 ## 🛠️ Tech Stack
